@@ -22,13 +22,15 @@ def draw_tree(tree, method):
     plt.savefig(seq_file.replace(".fasta", "_"+method+".svg"))
 
 
-def upgma_constructor(seq, svg):
-    """Construct a tree using the UPGMA method.
+def tree_constructor(seq, method, svg):
+    """Construct a tree using the NJ or UPGMA method.
     
     Parameters
     ----------
     seq :Bio.Align.MultipleSeqAlignment
         A multiple sequences alignement.
+    method : str
+        Indicates which method to use, NJ or UPGMA.
     svg : boolean
         Wether or not the tree should be saved as a svg file.
     
@@ -39,15 +41,19 @@ def upgma_constructor(seq, svg):
     """
     calculator = Tree.DistanceCalculator('blosum62')
     distance_matrix = calculator.get_distance(seq)
-    
     constructor = Tree.DistanceTreeConstructor()
-    upgma_tree = constructor.upgma(distance_matrix)
     
-    Phylo.write(upgma_tree, seq_file.replace(".fasta", "_upgma.nwk"), "newick")
+    if method == "NJ":
+        tree = constructor.nj(distance_matrix)
+    if method == "UPGMA":
+        tree = constructor.upgma(distance_matrix)
+    
+    Phylo.write(tree, seq_file.replace(".fasta", "_"+method+".nwk"), "newick")
     
     if svg:
-        draw_tree(upgma_tree, "upgma")
-    return upgma_tree
+        draw_tree(tree, method)
+    return tree
+
 
 def parsimony_constructor(tree, seq, svg):
     """Construct a tree using the parsimony method.
@@ -66,19 +72,26 @@ def parsimony_constructor(tree, seq, svg):
     constructor = Tree.ParsimonyTreeConstructor(searcher, tree)
     
     pars_tree = constructor.build_tree(seq)
-    Phylo.write(pars_tree, seq_file.replace(".fasta", "_parsimony.nwk"), "newick")
+    Phylo.write(pars_tree,
+                seq_file.replace(".fasta", "_parsimony.nwk"),
+                "newick")
     
     if svg:
             draw_tree(pars_tree, "parsimony")
 
 
-def tree_constructor(seq, aligned=False, svg=False, parsimony=False):
-    """Construct a tree using the UPGMA method.
+def tree_manager(seq, aligned=False, method="nj", svg=False, parsimony=False):
+    """Construct a tree from a multi sequence alignement
+    or from a multi sequence file that will get aligned.
     
     Parameters
     ----------
     seq : Bio.Align.MultipleSeqAlignment
         A multiple sequences alignement.
+    aligned : boolean
+        Wether or not the seq specified is already aligned.
+    method : str
+        The method to use for the tree generation, either NJ or UPGMA.
     svg : boolean
         Wether or not the tree should be saved as a svg file. 
     parsimony : boolean
@@ -98,12 +111,17 @@ def tree_constructor(seq, aligned=False, svg=False, parsimony=False):
         print("Error: Input sequence need to be a fasta file \
               or an multi sequences alignment.")
     
-    upgma_tree = upgma_constructor(sequence, svg)
+    if method == "nj" or method == "upgma":   
+        tree = tree_constructor(sequence, method, svg)
+    else:
+        print("Error: method should either be 'nj' or 'upgma'. \
+              Leave blank for nj method.")
 
     if parsimony:
-        parsimony_constructor(upgma_tree, seq, svg)
+        parsimony_constructor(tree, seq, svg)
 
 if __name__ == "__main__":
-    seq_file = "og_variant.fasta"
-    #aligned_seq = AlignIO.read(seq_file.replace(".fasta", "_aligned.fasta"), "fasta")
-    tree_constructor(seq_file)
+    seq_file = "data/spike_data_708.fasta"
+    aligned_seq = AlignIO.read(seq_file.replace(".fasta", "_aligned.fasta"),
+                               "fasta")
+    tree_manager(aligned_seq, True, svg=True)

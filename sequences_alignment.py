@@ -40,5 +40,5 @@ def align_seq(in_dir, method="clustalw", out_file=False):
     return align
 
 if __name__ == "__main__":
-    seq_file = "D:/Data/Fac/Master/M1/Python/ETE_tuto/og_variant.fasta"
-    sequence = align_seq(seq_file)
+    seq_file = "data/spike_data_708.fasta"
+    sequence = align_seq(seq_file, "clustalw", True)
