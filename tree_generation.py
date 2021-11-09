@@ -7,6 +7,7 @@ NJ and UPGMA algorithms are both supported for the tree generation.
 """
 
 import os
+import pandas as pd
 import matplotlib.pyplot as plt
 import Bio.Phylo.TreeConstruction as Tree
 from Bio import AlignIO, Phylo
@@ -48,8 +49,15 @@ def tree_constructor(seq, method="nj", svg=False):
     Bio.Phylo.BaseTree.Tree
         The generated UPGMA tree
     """
-    calculator = Tree.DistanceCalculator('blosum62')
+    calculator = Tree.DistanceCalculator('blosum90')
     distance_matrix = calculator.get_distance(seq)
+    
+    distances=[]
+    for disLis in distance_matrix:
+        distances.append(disLis)
+    distance_df = pd.DataFrame(distances)
+    # distance_df.to_csv("D:/Data/Fac/Master/M1/Python/ETE_tuto/distance_matrix.csv")
+    
     constructor = Tree.DistanceTreeConstructor()
 
     if method == "nj":
@@ -57,7 +65,7 @@ def tree_constructor(seq, method="nj", svg=False):
     if method == "upgma":
         tree = constructor.upgma(distance_matrix)
 
-    Phylo.write(tree, method+".nwk", "newick")
+    Phylo.write(tree, method+"_tree.nwk", "newick")
 
     if svg:
         draw_tree(tree, method)

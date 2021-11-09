@@ -31,24 +31,21 @@ def align_seq(in_dir, method="clustalw", out_file=False):
     if out_file:
         out_dir = in_dir.replace(".fasta", "_aligned.fasta")
         open(out_dir, "w+").close()
+        parameters = {"infile": in_dir, "outfile": out_dir, "force": True}
         if method == "clustalw":
-            cline = ClustalOmegaCommandline(clustalo_exe,
-                                            infile=in_dir,
-                                            outfile=out_dir,
-                                            force=True)
-        if method == "muscle":
-            cline = MuscleCommandline(muscle_exe,
-                                      infile=in_dir,
-                                      outfile=out_dir,
-                                      force=True)
+            cline = ClustalOmegaCommandline(clustalo_exe, parameters)
+        elif method == "muscle":
+            cline = MuscleCommandline(muscle_exe, parameters)
         stdout, stderr = cline()
         align = AlignIO.read(out_dir, "fasta")
 
     else:
-        clustalw_cline = ClustalOmegaCommandline(clustalo_exe,
-                                                 infile=in_dir,
-                                                 auto=True)
-        stdout, stderr = clustalw_cline()
+        parameters = {"infile": in_dir, "auto": True}
+        if method == "clustalw":
+            cline = ClustalOmegaCommandline(clustalo_exe, parameters)
+        elif method == "muscle":
+            cline = MuscleCommandline(muscle_exe, parameters)
+        stdout, stderr = cline()
         align = AlignIO.read(StringIO(stdout), "fasta")
     return align
 
