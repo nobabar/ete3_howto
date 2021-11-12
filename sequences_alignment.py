@@ -22,7 +22,7 @@ def align_seq(in_dir, method="clustalw", out_file=False):
 
     Returns
     -------
-    align
+    Bio.Align.MultipleSeqAlignment
         The aligned sequences.
     """
     clustalo_exe = "./clustal-omega/clustalo.exe"
