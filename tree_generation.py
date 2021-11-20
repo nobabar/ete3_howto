@@ -37,7 +37,7 @@ def tree_constructor(seq, method="nj", svg=False):
 
     Parameters
     ----------
-    seq :Bio.Align.MultipleSeqAlignment
+    seq : Bio.Align.MultipleSeqAlignment
         A multiple sequences alignement.
     method : str (default nj)
         Indicates which method to use, NJ or UPGMA.
@@ -50,14 +50,26 @@ def tree_constructor(seq, method="nj", svg=False):
         The generated UPGMA tree
     """
     calculator = Tree.DistanceCalculator('blosum90')
-    distance_matrix = calculator.get_distance(seq)
-    
-    distances=[]
-    for disLis in distance_matrix:
-        distances.append(disLis)
-    distance_df = pd.DataFrame(distances)
-    # distance_df.to_csv("D:/Data/Fac/Master/M1/Python/ETE_tuto/distance_matrix.csv")
-    
+
+    if os.path.isfile("data/distance_matrix.csv"):
+        dm_df = pd.read_csv("data/distance_matrix.csv",
+                            index_col=0)
+        lower_triangle = []
+        k = 1
+        for i in dm_df.values:
+            lower_triangle.append(list(map(float, i[:k])))
+            k += 1
+        distance_matrix = Tree._DistanceMatrix(names = list(dm_df.index),
+                                               matrix=lower_triangle)
+
+    else:
+        distance_matrix = calculator.get_distance(seq)
+        distances=[]
+        for dis_lis in distance_matrix:
+            distances.append(dis_lis)
+            distance_df = pd.DataFrame(distances, index=distance_matrix.names)
+            distance_df.to_csv("data/distance_matrix.csv")
+
     constructor = Tree.DistanceTreeConstructor()
 
     if method == "nj":

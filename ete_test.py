@@ -27,7 +27,7 @@ print(f"Est-ce qu'on est à la racine : {t.is_root()}")
 print(f"La distance à son premier enfant : {t.children[0].dist}")
 
 leaf_ex, dist_to_leaf = t.get_closest_leaf()
-print(f"La distance à la plus courte feuille {leaf_ex est : {dist_to_leaf}")
+print(f"La distance à la plus courte feuille {leaf_ex} est : {dist_to_leaf}")
 ex_up = leaf_ex.up.up.up
 
 
