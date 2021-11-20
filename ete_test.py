@@ -39,7 +39,7 @@ circ_style.scale = 20
 # marche pas peut-être essayer avec plus petit
 ex_up.render("test_render.svg", tree_style = circ_style)
 
-# # Imprimer tous les noms de noeuds terminaux
+# Imprimer tous les noms de noeuds terminaux
 # for node in t.traverse("preorder"):
 #     if node.is_leaf():
 #         print(node.name)
