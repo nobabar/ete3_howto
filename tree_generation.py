@@ -78,7 +78,7 @@ def tree_constructor(seq, method="nj", svg=False):
     if method == "upgma":
         tree = constructor.upgma(distance_matrix)
 
-    Phylo.write(tree, method+"_tree.nwk", "newick")
+    Phylo.write(tree, method+"_tree2.nwk", "newick")
 
     if svg:
         draw_tree(tree, method)
@@ -143,6 +143,7 @@ def tree_manager(seq, aligned=False, align_method="clustalw", align_out=False,
     else:
         print("Error: Input sequence need to be a fasta file \
               or an multi sequences alignment.")
+        return
 
     if tree_method in ('nj', 'upgma'):
         tree = tree_constructor(sequence, tree_method, svg)
