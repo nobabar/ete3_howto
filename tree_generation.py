@@ -78,7 +78,7 @@ def tree_constructor(seq, method="nj", svg=False):
     if method == "upgma":
         tree = constructor.upgma(distance_matrix)
 
-    Phylo.write(tree, method+"_tree2.nwk", "newick")
+    Phylo.write(tree, method+"_tree.nwk", "newick")
 
     if svg:
         draw_tree(tree, method)

@@ -18,11 +18,11 @@ def add_variant(variant_file, align_file, out_file):
 
 
 if __name__ == "__main__":
-    VARIANT = "data/variant_delta.fasta"
-    ALIGNMENT = "data/spike_data_708_aligned.fasta"
+    OUTGROUP = "data/outgroup.fasta"
+    ALIGNMENT = "data/spike_old_aligned.fasta"
     ALIGNMENT_VARIANT = "data/spike_variant.fasta"
     
-    add_variant(VARIANT, ALIGNMENT, ALIGNMENT_VARIANT)
+    add_variant(OUTGROUP, ALIGNMENT, ALIGNMENT_VARIANT)
     # compiled_alignment = align_seq(ALIGNMENT_VARIANT, out_file=True)
     compiled_alignment = AlignIO.read(ALIGNMENT_VARIANT.replace(".fasta", "_aligned.fasta"), "fasta")
     tree_manager(compiled_alignment, aligned=True,
