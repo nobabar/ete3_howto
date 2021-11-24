@@ -1,5 +1,5 @@
 """This module generate trees based on a multi sequences alignment or \
-does perform the alignment in case it has not been preiviously done.
+does perform the alignment in case it has not been previously done.
 
 See the documentation of the sequences_alignment module for the alignment.
 
