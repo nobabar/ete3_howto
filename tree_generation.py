@@ -6,15 +6,15 @@ See the documentation of the sequences_alignment module for the alignment.
 NJ and UPGMA algorithms are both supported for the tree generation.
 """
 
-import os
-import pandas as pd
-import matplotlib.pyplot as plt
-
-import Bio.Phylo.TreeConstruction as Tree
-from Bio import AlignIO, Phylo
-
 # Custom alignement module, see its documentation
 from sequences_alignment import align_seq
+
+from Bio import AlignIO, Phylo
+import Bio.Phylo.TreeConstruction as Tree
+
+import matplotlib.pyplot as plt
+import os
+import pandas as pd
 
 
 def draw_tree(tree, method):

@@ -3,9 +3,9 @@
 ClustalW and Muscle algorithms are both supported for the alignment.
 """
 
-from io import StringIO
 from Bio import AlignIO
 from Bio.Align.Applications import ClustalOmegaCommandline, MuscleCommandline
+from io import StringIO
 
 
 def align_seq(in_dir, method="clustalw", out_file=False):

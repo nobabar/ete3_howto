@@ -1,9 +1,10 @@
-from shutil import copyfile
-from Bio import SeqIO, AlignIO
-
 # Custom modules, see their documentation
 from sequences_alignment import align_seq
 from tree_generation import tree_manager
+
+from Bio import SeqIO, AlignIO
+from shutil import copyfile
+
 
 def add_variant(variant_file, align_file, out_file):
     variant_seq = SeqIO.read(variant_file, "fasta")
