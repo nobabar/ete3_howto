@@ -8,5 +8,8 @@
 !data/*.csv
 !*.py
 !*.ipynb
+<<<<<<< HEAD
 !*.md
+=======
+>>>>>>> f2fe5b72dbfe0e112ffeaafbc72566f44851be9b
 !*.yaml
