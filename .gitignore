@@ -1,6 +1,12 @@
 /*
 *png
 *svg
-!data
+*variant*.fasta
+!data/*.fasta
+!data/*.nwk
+!data/*.txt
+!data/*.csv
 !*.py
 !*.ipynb
+!*.md
+!*.yaml
