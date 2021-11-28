@@ -2,7 +2,7 @@
 *png
 *svg
 *variant*.fasta
-*.ipynb_checkpoints
+data/.ipynb_checkpoints/*
 !data/*.fasta
 !data/*.nwk
 !data/*.txt
