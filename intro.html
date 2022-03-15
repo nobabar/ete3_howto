@@ -13114,8 +13114,7 @@ $( document ).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Les-arbres">Les arbres<a class="anchor-link" href="#Les-arbres">&#182;</a></h1><p>Les arbres sont des structures non linéaire qui traduisent une organisation hiérarchique (bases de données, systèmes de fichiers, site web,
-analyse syntaxique etc). Les arbres sont largement utilisés en biologie et notamment en génétique avec les arbres phylogénétiques. Ils sont constitués de branches se séparant en n&oelig;ud et se terminant en feuilles. En théorie des graphes les arbres sont des examples de graphes orientés acycliques. C'est à dire qu'ils ont une direction et ne possède pas de circuit.</p>
+<h1 id="Les-arbres">Les arbres<a class="anchor-link" href="#Les-arbres">&#182;</a></h1><p>Les arbres sont des structures non linéaire qui traduisent une organisation hiérarchique. Les arbres sont largement utilisés en informatique mais aussi en biologie et notamment en génétique avec les arbres phylogénétiques. Ils sont constitués de branches se séparant en n&oelig;ud et se terminant en feuilles. En théorie des graphes les arbres sont des examples de graphes orientés acycliques. C'est à dire qu'ils ont une direction et ne possède pas de circuit.</p>
 <p>Les arbres phylogénétiques sont utilisés pour représenter des relations de parenté entres des êtres vivants ou des groupes d'êtres vivants. Chaque n&oelig;ud montrant l'ancêtre commun des différentes branches subsidiaires. De part leurs propriétés, les arbres phylogénétiques ne peuvent prendre en compte les tansferts horizontaux ou hybridations.</p>
 <p>Ici nous utiliserons des arbres en format Newick (.nwk), c'est l'un des formats les plus couramment utilisé. Ces arbres contiennent l'information des n&oelig;ud de l'arbre, de leur hiérarchie ainsi que la distance de chacun avec son n&oelig;ud d'ordre supérieur dans un réseau de parenthèses imbriquées.</p>
 <p>La hauteur d'un n&oelig;ud est la longueur du plus grand chemin depuis une feuille jusqu'à ce n&oelig;ud. La profondeur d'un n&oelig;ud est la distance avec la racine. L'arité d'un noeud et le nombre de branches successeures qu'il a, l'arité d'un arbre est l'arité maximale de ses noeuds.</p>
@@ -13128,7 +13127,7 @@ analyse syntaxique etc). Les arbres sont largement utilisés en biologie et nota
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="La-librairie-ETE">La librairie ETE<a class="anchor-link" href="#La-librairie-ETE">&#182;</a></h1><p><a href="http://etetoolkit.org">ETE</a> est une librairie python qui facilite la manipulation, analyse et visualisation d'arbres phylogénétiques. Elle permet la manipulation et l'annotation d'arbres particulièrement complexes.</p>
+<h1 id="La-librairie-ETE">La librairie ETE<a class="anchor-link" href="#La-librairie-ETE">&#182;</a></h1><p><a href="http://etetoolkit.org">ETE</a> est une librairie python qui facilite la manipulation, analyse et visualisation d'arbres phylogénétiques.</p>
 <p><center>
 <img src="https://raw.githubusercontent.com/jhcepas/ete/master/sdoc/gallery.png" width="60%"></p>
 <center>
@@ -13437,7 +13436,7 @@ FILE
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Le-jeu-de-donn&#233;e">Le jeu de donn&#233;e<a class="anchor-link" href="#Le-jeu-de-donn&#233;e">&#182;</a></h1><p>Pour mettre en pratique les outils d'ETE nous étudierons un jeu séquences de la protéine Spike du SARS-COV2. Ce jeu de donnée à été récupéré depuis la base de donnée du NCBI. Afin de trier ces séquences un threshold du nombre d'apparition de ces séquences a appliqué. Cela nous donne le fichier fasta que vous trouverez en <code>data\spike_data_708.fasta</code></p>
+<h1 id="Le-jeu-de-donn&#233;e">Le jeu de donn&#233;e<a class="anchor-link" href="#Le-jeu-de-donn&#233;e">&#182;</a></h1><p>Pour mettre en pratique les outils d'ETE nous étudierons un jeu séquences de la protéine Spike du SARS-COV2. Ce jeu de donnée à été récupéré depuis la base de donnée du NCBI. Afin de trier ces séquences un seuil du nombre d'apparition de ces séquences a appliqué. Cela nous donne le fichier fasta que vous trouverez en <code>data\spike_data_708.fasta</code></p>
 <p>Le fichier fasta à ensuite été aligné à l'aide du module <code>sequences_alignment</code> présenté ci-dessus et en utilisant Clustal$\Omega$. Un arbre a ensuite été généré à partir de cet alignement et grâce au module <code>tree_generation</code>. Nous avons utilisé blosum90 comme matrice de substitution à cause de la proximité des séquences. Nous avons utilisé le Neighbor Joining comme méthode phénétique.</p>
 
 </div>
